@@ -334,7 +334,8 @@
       md_refl: "- **РЕФЛЕКСІЯ:** ",
       md_cov: " (coverage {b}% → {a}%, Δ {d} п.п.)",
       md_cite:
-        "_Iskandarova-Mala, A. (2025). RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education. https://steminist-ua.github.io/ai-academic-toolkit/raid-g_",
+        "_Згенеровано за допомогою: Іскандарова-Мала, А. (2025). RAID-G (Responsible AI Declaration Generator): Практичний інструмент для документування відповідального використання генеративного ШІ студентами у вищій освіті. https://steminist-ua.github.io/ai-academic-toolkit/raid-g_",
+      md_cite_plain: "_Згенеровано за допомогою: Іскандарова-Мала, А. (2025). RAID-G (Responsible AI Declaration Generator): Практичний інструмент для документування відповідального використання генеративного ШІ студентами у вищій освіті. https://steminist-ua.github.io/ai-academic-toolkit/raid-g/_",
       // Чіпси
       chip_goal: [
         "Рефакторинг модулів (SRP, DRY), оптимізація алгоритмів",
@@ -453,7 +454,8 @@
       md_refl: "- **REFLECTION:** ",
       md_cov: " (coverage {b}% → {a}%, Δ {d} p.p.)",
       md_cite:
-        "_Iskandarova-Mala, A. (2025). RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education. https://steminist-ua.github.io/ai-academic-toolkit/raid-g_",
+        "_Generated with: Iskandarova-Mala, A. (2025). RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education. https://steminist-ua.github.io/ai-academic-toolkit/raid-g_",
+      md_cite_plain: "_Generated with: Iskandarova-Mala, A. (2025). RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education. https://steminist-ua.github.io/ai-academic-toolkit/raid-g/_",
       // Chips
       chip_goal: [
         "Refactor modules (SRP, DRY), optimize algorithms",
@@ -727,19 +729,33 @@
     if (tz === 'green'){
       const ok = clarifiedTask.checked && manualValidation.checked && originalityNote.checked && privacyOk.checked;
       warn.style.display = ok ? 'none' : '';
-      const md = [
+
+      // Collect checked checklist items (localized labels)
+      const checks = [];
+      if (clarifiedTask.checked)   checks.push(t('chk_task'));
+      if (manualValidation.checked) checks.push(t('chk_valid'));
+      if (originalityNote.checked)  checks.push(t('chk_orig'));
+      if (privacyOk.checked)        checks.push(t('chk_priv'));
+
+      const mdParts = [
         t('md_light_header'),
         '',
         `${t('md_tools')}${tools.value || '—'}`,
         `${t('md_usedfor')}${usedFor.value || '—'}`,
-        `${t('md_mycontrib')}${lightContribution.value || (l==='uk' ? '(коротко опишіть, що зроблено вручну)' : '(briefly describe what was done manually)')}`,
-        `${t('md_verify')}${shorten(verification.value) || (l==='uk' ? '(валідація/тести/звірка джерел)' : '(validation/tests/source checking)')}${covNote}`,
-        t('md_privacy'),
-        '',
-        t('md_official').replace('{repo}', REPO_LINK || (l==='uk' ? '<додати посилання>' : '<add link>'))
-                        .replace('{asst}', ASSISTANT_LINK || (l==='uk' ? '<додати посилання>' : '<add link>'))
-      ].join('\n');
-      return md;
+        `${t('md_mycontrib')}${lightContribution.value || (l==='uk' ? '(коротко опишіть, що зроблено вручну)' : '(briefly describe what was done manually)')}`
+      ];
+
+      // Selected checklist items
+      if (checks.length){
+        mdParts.push('');
+        checks.forEach(label => mdParts.push(`- [x] ${label}`));
+      }
+
+      // Citation line
+      mdParts.push('');
+      mdParts.push(t('md_cite_plain'));
+
+      return mdParts.join('\n');
     }
 
     const md = [
