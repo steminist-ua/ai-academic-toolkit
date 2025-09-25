@@ -1,0 +1,128 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Encoding & Language ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% ---------- Layout & Links ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={RAID-G (Responsible AI Declaration Generator)},
+  pdfauthor={Anastasiia Iskandarova-Mala},
+  colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue
+}
+
+% ---------- Graphics / Tables / Code ----------
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  breaklines=true,
+  tabsize=2,
+  showstringspaces=false
+}
+
+% ---------- Metadata Macros ----------
+\newcommand{\toolname}{RAID-G (Responsible AI Declaration Generator)}
+\newcommand{\titlelong}{\toolname: A practical instrument for documenting responsible student use of generative AI in higher education}
+\newcommand{\authorname}{Anastasiia Iskandarova-Mala}
+\newcommand{\affil}{Department of Software Engineering, Dnipro State Technical University (DDTU), Ukraine}
+% Fill when available:
+\newcommand{\zenododoi}{10.5281/zenodo.XXXXXXX}
+\newcommand{\arxivid}{arXiv:2509.XXXXX}
+\newcommand{\githubrepo}{https://github.com/steminist-ua/ai-academic-toolkit}
+\newcommand{\generatorurl}{https://steminist-ua.github.io/ai-academic-toolkit/raid-g}
+
+% ---------- Title ----------
+\title{\titlelong}
+\author{\authorname\\\small \affil}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\toolname{} is a web-based educational instrument that enables higher education students to generate structured \emph{Declarations of AI Use} consistent with institutional policies on responsible use of generative AI. The tool operationalizes transparency, academic integrity, and reproducibility by guiding students to document: (1) tools used, (2) purpose and scope, (3) personal contributions beyond AI, (4) validation methods, and (5) critical reflection on limitations and risks. RAID-G includes a full mode (six sections) and a light checklist mode for minor tasks. The generator runs client-side and exports Markdown for integration with repositories and assessment workflows.
+\end{abstract}
+
+\noindent\textbf{Keywords:} generative AI; academic integrity; higher education; student reporting; learning analytics; reproducibility
+
+\section{Introduction}
+Generative AI systems (e.g., ChatGPT, Copilot, Claude, Figma Assist) are increasingly used by students. While these systems can serve as cognitive scaffolding, they also introduce integrity and transparency risks. Policies alone may remain abstract; students and instructors need a practical instrument that turns policy into action and evidence. \toolname{} addresses this gap by producing a standardized declaration aligning with responsible AI use in coursework and projects.
+
+\section{Background and Rationale}
+RAID-G is grounded in learning-centered pedagogy (scaffolding; higher-order cognitive skills per Bloom’s revised taxonomy) and academic integrity frameworks emphasizing disclosure and verifiability. The declaration focuses on \emph{added value} beyond AI generation, encouraging personal contribution, critical evaluation of AI output, and reproducibility of results.
+
+\section{Tool Overview}
+\subsection{Access and Implementation}
+\begin{itemize}[leftmargin=1.2em]
+  \item Web generator: \url{\generatorurl}
+  \item Repository: \url{\githubrepo}
+  \item Client-side (HTML/CSS/JS); no data leaves the browser.
+  \item Output: Markdown; suitable for inclusion in repositories, reports, or LMS submissions.
+\end{itemize}
+
+\subsection{Modes}
+\textbf{Full mode (``yellow zone'')} comprises six sections: Tools/Models; Purpose; Prompts/Chains; Personal Contribution; Verification; Reflection.  
+\textbf{Light mode (``green zone'')} is a 5-point checklist for minor tasks to reduce administrative burden.
+
+\subsection{Usability Features}
+Quick-insert chips (e.g., refactoring, boilerplate, tests, UML, SQL), optional coverage delta (percentage points), local persistence, and structured fields aligned with policy requirements.
+
+\section{Declaration Structure}
+\subsection{Full Declaration (six sections)}
+\begin{enumerate}[leftmargin=1.2em]
+  \item \textbf{Tools/Models:} names, versions, access dates.
+  \item \textbf{Purpose:} scope (e.g., refactoring, prototyping, visualization).
+  \item \textbf{Prompts/Chains:} key prompts or repository reference (e.g., \texttt{prompts.md}).
+  \item \textbf{Personal Contribution:} substantial modifications and integration beyond AI output.
+  \item \textbf{Verification:} tests, benchmarks, code review, facts/source checks, reproducibility.
+  \item \textbf{Reflection:} limitations, bias, risks, and mitigations.
+\end{enumerate}
+
+\subsection{Light Declaration (checklist)}
+\begin{enumerate}[leftmargin=1.2em]
+  \item Purpose of AI assistance (brief).
+  \item Personal contribution (brief).
+  \item Task clarified (context/constraints).
+  \item Manual validation performed.
+  \item Privacy and ethics respected (no sensitive data).
+\end{enumerate}
+
+\section{Assessment Alignment}
+The declaration supports evaluation criteria focusing on: technical correctness and reliability; architectural decisions; reproducibility; depth of understanding (oral/live-coding defense); and critical reflection on AI use. The aim is to assess \emph{learning gains} and \emph{added value}, not the capacity to generate content.
+
+\section{Privacy, Security, and Licensing}
+Students must avoid uploading confidential or personal data to third-party models unless approved. Where possible, use institutional or local models. Generated code/media must respect licenses; sources and attributions should be recorded in the declaration and repository.
+
+\section{How to Cite}
+When a declaration is produced via RAID-G, the following note may be appended:
+\begin{quote}\itshape
+Generated with RAID-G (Responsible AI Declaration Generator): \url{\generatorurl}.
+\end{quote}
+A formal reference to this instruction:
+\begin{quote}\small
+Iskandarova-Mala, A. (2025). \textit{\titlelong}. Zenodo. \href{https://doi.org/\zenododoi}{doi:\zenododoi}. Preprint available at \arxivid.
+\end{quote}
+
+\section{Limitations and Future Work}
+Current limitations include evolving model behaviors, institutional policy diversity, and variable student AI literacy. Future work: analytics for aggregated, privacy-preserving usage insights; interoperability with LMS; multilingual UX; and templates tailored to discipline-specific tasks.
+
+\section*{Acknowledgements}
+The author thanks colleagues and students for feedback during pilot deployments.
+
+\section*{Availability}
+\noindent Generator: \url{\generatorurl} \\
+Repository: \url{\githubrepo}
+
+\section*{License}
+This document is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). See: \url{https://creativecommons.org/licenses/by/4.0/}.

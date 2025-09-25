@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Academic Toolkit — Iskandarova-Mala</title>
+  <meta name="description" content="Policy, tools, and assistants for responsible use of generative AI in higher education. RAID-G declaration generator included." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Academic Toolkit — Iskandarova-Mala" />
+  <meta property="og:description" content="Policy, tools, and assistants for responsible use of generative AI in higher education. RAID-G declaration generator included." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://steminist-ua.github.io/ai-academic-toolkit/" />
+
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --card: #121722;
+      --muted: #9fb0c3;
+      --text: #eaf0f7;
+      --accent: #70d7ff;
+      --accent-2: #6cffb1;
+      --border: #223047;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --maxw: 1100px;
+      --grad: radial-gradient(1200px 700px at 20% -10%, rgba(112,215,255,.2), transparent 40%),
+              radial-gradient(1000px 600px at 100% 0%, rgba(108,255,177,.18), transparent 50%);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f6f8fb;
+        --card:#ffffff;
+        --muted:#5a6a7a;
+        --text:#141b22;
+        --accent:#0077ff;
+        --accent-2:#00b37a;
+        --border:#e7edf3;
+        --shadow: 0 20px 40px rgba(16, 46, 77, .08);
+        --grad: radial-gradient(1200px 700px at 20% -10%, rgba(0,119,255,.08), transparent 40%),
+                radial-gradient(1000px 600px at 100% 0%, rgba(0,179,122,.08), transparent 50%);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background: var(--bg); background-image: var(--grad);
+      line-height:1.5;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{max-width:var(--maxw); margin:0 auto; padding:28px 20px}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:10px;
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow: var(--shadow); flex:0 0 auto;
+    }
+    .brand h1{font-size:18px; margin:0; color:var(--text); letter-spacing:.2px}
+    .brand small{display:block; color:var(--muted); font-size:12px}
+
+    .lang-switch{
+      display:flex; gap:8px; align-items:center;
+      background:transparent; border:0; padding:0; margin:0;
+    }
+    .chip{
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      padding:8px 12px; border-radius:999px; font-size:13px;
+      cursor:pointer; transition:.2s ease all;
+    }
+    .chip[aria-pressed="true"]{
+      background: linear-gradient(135deg, rgba(112,215,255,.2), rgba(108,255,177,.16));
+      border-color: transparent; outline: 2px solid rgba(112,215,255,.35);
+      font-weight:600;
+    }
+
+    .hero{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center;
+      padding:34px; background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow: var(--shadow);
+    }
+    @media (max-width: 920px){ .hero{ grid-template-columns:1fr; } }
+
+    .hero h2{font-size:34px; line-height:1.15; margin:0 0 14px 0}
+    .hero p{color:var(--muted); margin:0 0 20px 0}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 18px; border-radius:12px; border:1px solid var(--border);
+      background:var(--card); color:var(--text); font-weight:600; cursor:pointer;
+      transition:.2s ease transform, .2s ease background;
+      text-decoration:none;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg,var(--accent), var(--accent-2));
+      color:#04131a; border-color: transparent; text-shadow: 0 1px 0 rgba(255,255,255,.2);
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0)}
+    .hero-illu{
+      min-height:180px; border-radius:12px; border:1px dashed var(--border);
+      display:grid; place-items:center; color:var(--muted);
+      background:
+        radial-gradient(600px 260px at 15% 20%, rgba(112,215,255,.14), transparent 60%),
+        radial-gradient(400px 220px at 80% 30%, rgba(108,255,177,.12), transparent 65%);
+    }
+
+    .grid{
+      margin-top:26px; display:grid; grid-template-columns: repeat(12, 1fr);
+      gap:18px;
+    }
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm);
+      padding:20px; box-shadow: var(--shadow);
+    }
+    .span-8{grid-column: span 8}
+    .span-4{grid-column: span 4}
+    .span-6{grid-column: span 6}
+    .span-12{grid-column: span 12}
+    @media (max-width: 920px){
+      .span-8,.span-4,.span-6,.span-12{grid-column: 1 / -1}
+    }
+
+    h3{margin:0 0 10px 0}
+    .muted{color:var(--muted)}
+    ul.clean{margin:10px 0 0 0; padding-left:18px}
+    .kpis{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      background:rgba(112,215,255,.12); border:1px solid rgba(112,215,255,.35);
+      padding:8px 12px; border-radius:999px; font-size:12px; color:var(--text)
+    }
+    .footer{
+      margin-top:28px; padding:18px; color:var(--muted); text-align:center; font-size:13px
+    }
+    code.inline{background:rgba(125,144,164,.18); border:1px solid var(--border); padding:2px 6px; border-radius:6px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#" aria-label="AI Academic Toolkit">
+        <div class="logo"></div>
+        <div>
+          <h1 id="t_title">AI Academic Toolkit</h1>
+          <small id="t_subtitle">Policy • RAID-G • Teaching Assistant</small>
+        </div>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="chip" id="btn-en" data-lang="en" aria-pressed="true">EN</button>
+        <button class="chip" id="btn-ua" data-lang="ua" aria-pressed="false">UA</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h2 id="t_hero_h">Responsible AI in Higher Education</h2>
+        <p id="t_hero_p">
+          Policy, tools, and assistants developed by <strong>Anastasiia Iskandarova-Mala</strong> to
+          make generative AI transparent, ethical, and effective for learning.
+        </p>
+        <div class="cta">
+          <a class="btn primary" id="t_cta_raidg" href="https://steminist-ua.github.io/ai-academic-toolkit/raid-g/" target="_blank" rel="noopener">Open RAID-G</a>
+          <a class="btn" id="t_cta_policy_en" href="./POLICY.md">Policy (EN)</a>
+          <a class="btn" id="t_cta_policy_ua" href="./POLICY_UA.md">Політика (UA)</a>
+        </div>
+      </div>
+      <div class="hero-illu">
+        <div id="t_hero_badge">Policy · Generator · Assistant</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card span-8">
+        <h3 id="t_policy_h">Academic AI Policy</h3>
+        <p class="muted" id="t_policy_p">
+          A comprehensive framework for the academic use of generative AI in university teaching and learning.
+          It defines principles, allowed practices, declaration requirements, and evaluation mechanisms.
+        </p>
+        <ul class="clean" id="t_policy_list">
+          <li><strong>Summary:</strong> AI is a <em>cognitive partner</em>, not a replacement. Students declare AI use, show substantial modification, and reflect critically.</li>
+          <li><strong>Languages:</strong> <a href="./POLICY.md">English</a> · <a href="./POLICY_UA.md">Українська</a></li>
+        </ul>
+      </article>
+
+      <aside class="card span-4">
+        <h3 id="t_kits_h">Quick Links</h3>
+        <ul class="clean" id="t_kits_list">
+          <li><a href="https://steminist-ua.github.io/ai-academic-toolkit/raid-g/" target="_blank" rel="noopener">RAID-G generator</a></li>
+          <li><a href="./POLICY.md">Policy (EN)</a> · <a href="./POLICY_UA.md">Політика (UA)</a></li>
+        </ul>
+        <div class="kpis">
+          <span class="pill" id="t_pill_open">Open-source</span>
+          <span class="pill" id="t_pill_md">Markdown-ready</span>
+          <span class="pill" id="t_pill_biling">Bilingual</span>
+        </div>
+      </aside>
+
+      <article class="card span-6">
+        <h3 id="t_raidg_h">RAID-G — Responsible AI Declaration Generator</h3>
+        <p class="muted" id="t_raidg_p">
+          A web tool to create structured AI-use declarations aligned with the policy. Features an easy form,
+          dropdowns with custom values, quick-insert chips (Refactoring, Boilerplate, Tests), and bilingual output.
+        </p>
+        <a class="btn" href="https://steminist-ua.github.io/ai-academic-toolkit/raid-g/" target="_blank" rel="noopener" id="t_raidg_btn">Open generator</a>
+      </article>
+
+      <article class="card span-6">
+        <h3 id="t_ta_h">AI Teaching Assistant (in development)</h3>
+        <p class="muted" id="t_ta_p">
+          An educational assistant focused on learning: supports fair evaluation, suggests code refactoring,
+          explains theory, and guides students to build skills—instead of just providing final answers.
+        </p>
+      </article>
+
+      <article class="card span-12">
+        <h3 id="t_struct_h">Repository structure</h3>
+        <pre class="muted" id="t_struct_pre"><code>ai-academic-toolkit/
+│── POLICY.md          # Policy on AI use in English
+│── POLICY_UA.md       # Policy on AI use in Ukrainian
+│── raid-g/            # RAID-G declaration generator (HTML/CSS/JS)
+│── README.md          # Repository overview
+└── (future) assistant/ # AI Teaching Assistant modules</code></pre>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <span id="t_footer">
+        © <span id="year"></span> Anastasiia Iskandarova-Mala. The tools follow the author’s policy on AI use. Citation with attribution is welcome.
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    // Translation dictionary
+    const I18N = {
+      en: {
+        t_title: "AI Academic Toolkit",
+        t_subtitle: "Policy • RAID-G • Teaching Assistant",
+        t_hero_h: "Responsible AI in Higher Education",
+        t_hero_p: "Policy, tools, and assistants developed by <strong>Anastasiia Iskandarova-Mala</strong> to make generative AI transparent, ethical, and effective for learning.",
+        t_cta_raidg: "Open RAID-G",
+        t_cta_policy_en: "Policy (EN)",
+        t_cta_policy_ua: "Policy (UA)",
+        t_hero_badge: "Policy · Generator · Assistant",
+
+        t_policy_h: "Academic AI Policy",
+        t_policy_p: "A comprehensive framework for the academic use of generative AI in university teaching and learning. It defines principles, allowed practices, declaration requirements, and evaluation mechanisms.",
+        t_policy_list: `
+          <li><strong>Summary:</strong> AI is a <em>cognitive partner</em>, not a replacement. Students declare AI use, show substantial modification, and reflect critically.</li>
+          <li><strong>Languages:</strong> <a href="./POLICY.md">English</a> · <a href="./POLICY_UA.md">Українська</a></li>`,
+
+        t_kits_h: "Quick Links",
+        t_kits_list: `
+          <li><a href="https://steminist-ua.github.io/ai-academic-toolkit/raid-g/" target="_blank" rel="noopener">RAID-G generator</a></li>
+          <li><a href="./POLICY.md">Policy (EN)</a> · <a href="./POLICY_UA.md">Політика (UA)</a></li>`,
+        t_pill_open: "Open-source",
+        t_pill_md: "Markdown-ready",
+        t_pill_biling: "Bilingual",
+
+        t_raidg_h: "RAID-G — Responsible AI Declaration Generator",
+        t_raidg_p: "A web tool to create structured AI-use declarations aligned with the policy. Features an easy form, dropdowns with custom values, quick-insert chips (Refactoring, Boilerplate, Tests), and bilingual output.",
+        t_raidg_btn: "Open generator",
+
+        t_ta_h: "AI Teaching Assistant (in development)",
+        t_ta_p: "An educational assistant focused on learning: supports fair evaluation, suggests code refactoring, explains theory, and guides students to build skills—instead of just providing final answers.",
+
+        t_struct_h: "Repository structure",
+
+        t_footer: "© {year} Anastasiia Iskandarova-Mala. The tools follow the author’s policy on AI use. Citation with attribution is welcome.",
+      },
+
+      ua: {
+        t_title: "AI Academic Toolkit",
+        t_subtitle: "Політика • RAID-G • Асистент викладача",
+        t_hero_h: "Відповідальний ШІ у вищій освіті",
+        t_hero_p: "Політика, інструменти та асистенти, розроблені <strong>Анастасією Іскандаровою-Малою</strong>, щоб зробити генеративний ШІ прозорим, етичним та ефективним для навчання.",
+        t_cta_raidg: "Відкрити RAID-G",
+        t_cta_policy_en: "Policy (EN)",
+        t_cta_policy_ua: "Політика (UA)",
+        t_hero_badge: "Політика · Генератор · Асистент",
+
+        t_policy_h: "Політика використання ШІ",
+        t_policy_p: "Комплексна рамка для академічного використання генеративного ШІ у викладанні та навчанні. Визначає принципи, дозволені практики, вимоги до декларацій і механізми оцінювання.",
+        t_policy_list: `
+          <li><strong>Головна ідея:</strong> ШІ — <em>когнітивний партнер</em>, а не заміна. Студенти декларують використання ШІ, демонструють суттєву переробку та надають критичну рефлексію.</li>
+          <li><strong>Мови:</strong> <a href="./POLICY.md">English</a> · <a href="./POLICY_UA.md">Українська</a></li>`,
+
+        t_kits_h: "Швидкі посилання",
+        t_kits_list: `
+          <li><a href="https://steminist-ua.github.io/ai-academic-toolkit/raid-g/" target="_blank" rel="noopener">Генератор RAID-G</a></li>
+          <li><a href="./POLICY.md">Policy (EN)</a> · <a href="./POLICY_UA.md">Політика (UA)</a></li>`,
+        t_pill_open: "Відкритий код",
+        t_pill_md: "Готово до Markdown",
+        t_pill_biling: "Двомовно",
+
+        t_raidg_h: "RAID-G — Генератор відповідальної декларації ШІ",
+        t_raidg_p: "Веб-інструмент для створення структурованих декларацій використання ШІ згідно з політикою. Пропонує зручну форму, випадаючі списки з власними значеннями, «кнопки-чіпси» (Refactoring, Boilerplate, Tests) та двомовний вивід.",
+        t_raidg_btn: "Відкрити генератор",
+
+        t_ta_h: "Асистент викладача (в розробці)",
+        t_ta_p: "Освітній асистент, орієнтований на навчання: допомагає чесно оцінювати, радить рефакторинг коду, пояснює теорію та веде студентів до набуття навичок — замість простих відповідей.",
+
+        t_struct_h: "Структура репозиторію",
+
+        t_footer: "© {year} Анастасія Іскандарова-Мала. Інструменти відповідають авторській політиці використання ШІ. Цитування з атрибуцією вітається.",
+      }
+    };
+
+    const ids = [
+      "t_title","t_subtitle","t_hero_h","t_hero_p","t_cta_raidg","t_cta_policy_en","t_cta_policy_ua","t_hero_badge",
+      "t_policy_h","t_policy_p","t_policy_list",
+      "t_kits_h","t_kits_list","t_pill_open","t_pill_md","t_pill_biling",
+      "t_raidg_h","t_raidg_p","t_raidg_btn",
+      "t_ta_h","t_ta_p",
+      "t_struct_h","t_struct_pre","t_footer"
+    ];
+
+    function setLang(lang){
+      const dict = I18N[lang] || I18N.en;
+      ids.forEach(id=>{
+        const el = document.getElementById(id);
+        if(!el) return;
+        const text = dict[id];
+        if(typeof text === "string"){
+          if(id === "t_footer"){
+            el.innerHTML = text.replace("{year}", new Date().getFullYear());
+          } else {
+            el.innerHTML = text;
+          }
+        }
+      });
+      document.documentElement.lang = (lang === "ua" ? "uk" : "en");
+      // Toggle buttons
+      document.getElementById("btn-en").setAttribute("aria-pressed", lang === "en");
+      document.getElementById("btn-ua").setAttribute("aria-pressed", lang === "ua");
+      localStorage.setItem("ai-toolkit-lang", lang);
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      history.replaceState({}, "", url.toString());
+    }
+
+    // Init
+    const params = new URLSearchParams(location.search);
+    const fromQuery = params.get("lang");
+    const fromStore = localStorage.getItem("ai-toolkit-lang");
+    const initial = (fromQuery || fromStore || "en").toLowerCase();
+    setLang(initial === "ua" ? "ua" : "en");
+
+    // Listeners
+    document.getElementById("btn-en").addEventListener("click", ()=> setLang("en"));
+    document.getElementById("btn-ua").addEventListener("click", ()=> setLang("ua"));
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

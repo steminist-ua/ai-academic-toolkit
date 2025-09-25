@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title data-i18n="page_title">RAID-G — Генератор декларації про відповідальне використання ШІ студентами у вищій освіті | політика А. Іскандарової-Малої</title>
+<style>
+  :root{
+    --bg:#f7f8fa;--card:#fff;--ink:#101319;--muted:#5b6472;--brand:#2f6feb;
+    --ok:#0a7f42;--warn:#b7791f;--border:#e4e7ec;--mono:#0f172a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:1200px;margin:auto;padding:20px}
+  h1{margin:0 0 8px;}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .layout{display:grid;gap:18px}
+  @media (min-width:980px){.layout{grid-template-columns:7fr 5fr}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .hd{padding:14px 18px;border-bottom:1px solid var(--border)}
+  .hd h2{font-size:18px;margin:0}
+  .bd{padding:16px 18px}
+  .row{display:grid;gap:14px}
+  .row-2{grid-template-columns:1fr}
+  @media (min-width:720px){.row-2{grid-template-columns:1fr 1fr}}
+  label{display:block;font-size:13px;color:#2a2f37;margin:6px 0 6px}
+  input[type="text"],input[type="number"],textarea,select{
+    width:100%;padding:12px 14px;border:1px solid var(--border);
+    border-radius:12px;background:#fff;color:var(--ink);font:16px/1.5 inherit;outline:none
+  }
+  input[type="text"]::placeholder,textarea::placeholder{color:#9aa3af}
+  textarea{min-height:140px;resize:vertical}
+  .small{min-height:110px}
+  .hint{font-size:12px;color:var(--muted);margin-top:6px}
+  .note{padding:12px;border:1px dashed var(--border);border-radius:12px;background:#fff;margin-bottom:10px}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700}
+  .b-green{background:#e8f7ef;color:var(--ok)}
+  .b-yellow{background:#fff7e6;color:#8a6100}
+  .switch{display:flex;align-items:center;gap:10px}
+  .switch input{width:18px;height:18px}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  button{
+    appearance:none;border:1px solid var(--border);background:#fff;color:var(--ink);
+    padding:11px 16px;border-radius:12px;cursor:pointer;font-weight:600
+  }
+  button.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+  button.ghost{background:#fff}
+  .stack-gap{display:grid;gap:16px}
+  pre.preview{
+    margin:0;border-radius:12px;background:var(--mono);color:#e5e7eb;
+    padding:16px;white-space:pre-wrap;word-break:break-word;min-height:320px
+  }
+  .alert{padding:10px 12px;border-radius:12px;margin-bottom:10px}
+  .alert.warn{background:#fff7e6;border:1px solid #f5d69a;color:#7a5606}
+  .sticky{position:sticky;top:14px}
+  .footer{margin-top:18px;font-size:12px;color:var(--muted)}
+  .kudo{margin-top:8px;padding:10px 12px;border-left:3px solid var(--brand);background:#f3f7ff;border-radius:8px}
+  .divider{height:1px;background:var(--border);margin:6px 0 2px}
+
+  /* Чіпси */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{
+    background:#f1f5ff;border:1px solid #d9e2ff;color:#1c3faa;
+    padding:6px 10px;border-radius:999px;font-size:12px;cursor:pointer;user-select:none
+  }
+  .chip:hover{background:#e7eeff}
+  .inline-hint{font-size:12px;color:var(--muted);margin-left:8px}
+  .cov-wrap{display:flex;gap:10px;align-items:center}
+  .delta{font-size:13px;color:var(--muted)}
+  .delta.positive{color:#0a7f42}
+  .delta.negative{color:#b4240d}
+
+  /* Перемикач мов */
+  .langbar{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-bottom:12px}
+  .langbtn{
+    padding:6px 10px;border:1px solid var(--border);border-radius:10px;font-size:12px;cursor:pointer;background:#fff
+  }
+  .langbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar">
+    <button class="langbtn" data-lang="uk">Українська</button>
+    <button class="langbtn" data-lang="en">English</button>
+  </div>
+
+  <h1 data-i18n="h1_title">RAID-G — Генератор «Декларації про використання ШІ»</h1>
+  <div class="sub" data-i18n="subtitle_html">
+    Відповідає авторській політиці відповідального використання ШІ (<strong>Анастасія Іскандарова-Мала</strong>, кафедра ПЗС, ДДТУ).<br/>
+    Цитування: Іскандарова-Мала, А. (2025). <em>RAID-G (Responsible AI Declaration Generator): практичний інструмент для документування відповідального студентського використання генеративного ШІ у вищій освіті</em>.<br/>
+    Сторінка зберігає введені дані локально у вашому браузері.
+  </div>
+
+  <div class="layout">
+    <!-- Ліва колонка -->
+    <div class="card">
+      <div class="hd"><h2 data-i18n="form_title">Заповнення декларації</h2></div>
+      <div class="bd stack-gap">
+        <div class="row row-2">
+          <div>
+            <label for="mode" data-i18n="mode_label">Режим декларації</label>
+            <select id="mode">
+              <option value="yellow" data-i18n="mode_yellow">Жовта зона — повна (6 секцій)</option>
+              <option value="green" data-i18n="mode_green">Зелена зона — лайт (чек-лист)</option>
+            </select>
+          </div>
+          <div>
+            <label for="tools" data-i18n="tools_label">Інструменти/моделі (оберіть або впишіть своє)</label>
+            <input id="tools" type="text" list="toolsList"
+              placeholder="GPT-4o (ChatGPT), GitHub Copilot (VS Code)" data-i18n-ph="tools_ph"/>
+            <datalist id="toolsList">
+              <option value="GPT-4o (ChatGPT)">
+              <option value="GitHub Copilot (VS Code)">
+              <option value="Copilot Chat">
+              <option value="Claude 3.5 Sonnet">
+              <option value="Mistral Large">
+              <option value="Figma AI (Assist)">
+              <option value="Mermaid.js (UML)">
+              <option value="DataGrip Copilot">
+              <option value="pgAdmin + SQL Copilot">
+              <option value="Local LLM (Ollama) — offline">
+            </datalist>
+            <div class="hint" data-i18n="tools_hint">Можна комбінувати через кому.</div>
+          </div>
+        </div>
+
+        <!-- Повна декларація -->
+        <div id="full-fields" class="stack-gap">
+          <div>
+            <label for="goal" data-i18n="goal_label">Мета використання</label>
+            <textarea id="goal" data-i18n-ph="goal_ph" placeholder="Що саме робили за допомогою ШІ (рефакторинг, пояснення, boilerplate, візуалізації…)"></textarea>
+            <div class="chips" data-target="goal"></div>
+          </div>
+
+          <div class="row row-2">
+            <div>
+              <label for="prompts" data-i18n="prompts_label">Ключові промпти / ланцюжок</label>
+              <textarea id="prompts" class="small" data-i18n-ph="prompts_ph" placeholder="Стисло перелічіть ключові запити або опишіть ланцюжок промптів"></textarea>
+              <div class="chips" data-target="prompts"></div>
+            </div>
+            <div>
+              <label for="repoRef" data-i18n="repo_label">Посилання на prompts.md / артефакти</label>
+              <input id="repoRef" type="text" placeholder="/docs/prompts.md або URL репозиторію" data-i18n-ph="repo_ph"/>
+              <div class="hint" data-i18n="repo_hint">Напр.: /docs/prompts.md або https://…</div>
+              <label for="commit" style="margin-top:10px" data-i18n="commit_label">Commit hash <span class="inline-hint" data-i18n="opt">(необов’язково)</span></label>
+              <input id="commit" type="text" placeholder="a1b2c3d"/>
+            </div>
+          </div>
+
+          <div class="row row-2">
+            <div>
+              <label for="adr" data-i18n="adr_label">ADR / журнал рішень</label>
+              <input id="adr" type="text" placeholder="ADR-01, ADR-02"/>
+              <div class="chips" data-target="adr"></div>
+            </div>
+            <div>
+              <label for="contribution" data-i18n="contrib_label">Власний внесок (суттєва переробка)</label>
+              <textarea id="contribution" class="small" data-i18n-ph="contrib_ph" placeholder="Що саме змінено/перепроєктовано, чому, як інтегровано"></textarea>
+              <div class="chips" data-target="contribution"></div>
+            </div>
+          </div>
+
+          <div>
+            <label for="verification" data-i18n="verify_label">Перевірка якості/достовірності</label>
+            <textarea id="verification" class="small" data-i18n-ph="verify_ph" placeholder="Тести, бенчмарки, code review, перевірка джерел, відтворюваність"></textarea>
+            <div class="chips" data-target="verification"></div>
+          </div>
+
+          <div class="row">
+            <div class="cov-wrap">
+              <div style="flex:1">
+                <label for="covBefore" data-i18n="cov_before">Coverage «до», %</label>
+                <input id="covBefore" type="number" min="0" max="100" placeholder="напр., 65" data-i18n-ph="covb_ph"/>
+              </div>
+              <div style="flex:1">
+                <label for="covAfter" data-i18n="cov_after">Coverage «після», %</label>
+                <input id="covAfter" type="number" min="0" max="100" placeholder="напр., 87" data-i18n-ph="cova_ph"/>
+              </div>
+              <div id="delta" class="delta" data-i18n="delta">Δ: — п.п.</div>
+            </div>
+          </div>
+
+          <div>
+            <label for="reflection" data-i18n="refl_label">Критична рефлексія</label>
+            <textarea id="reflection" data-i18n-ph="refl_ph" placeholder="Обмеження моделі, упередженість, помилки, як мінімізовано"></textarea>
+            <div class="chips" data-target="reflection"></div>
+          </div>
+        </div>
+
+        <!-- Лайт-версія -->
+        <div id="light-fields" class="stack-gap" style="display:none">
+          <div class="note">
+            <span class="badge b-green" data-i18n="green_badge">зелена зона</span>
+            <span data-i18n="green_note">Заповніть чек-лист (усі пункти обов’язкові) + короткі описи.</span>
+          </div>
+
+          <div class="row row-2">
+            <div>
+              <label for="usedFor" data-i18n="usedfor_label">Для чого використовував(ла) ШІ</label>
+              <input id="usedFor" type="text" placeholder="пояснення / ідеї / структура / форматування…" data-i18n-ph="usedfor_ph"/>
+              <div class="chips" data-target="usedFor"></div>
+            </div>
+            <div>
+              <label for="lightContribution" data-i18n="light_contrib_label">Мій внесок (коротко)</label>
+              <input id="lightContribution" type="text" placeholder="що зроблено вручну, що змінила(в)" data-i18n-ph="light_contrib_ph"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="switch"><input id="clarifiedTask" type="checkbox"/> <label for="clarifiedTask" data-i18n="chk_task">Я уточнив(ла) завдання та обмеження (контекст)</label></div>
+            <div class="switch"><input id="manualValidation" type="checkbox"/> <label for="manualValidation" data-i18n="chk_valid">Результат вручну перевірено/доопрацьовано</label></div>
+            <div class="switch"><input id="originalityNote" type="checkbox"/> <label for="originalityNote" data-i18n="chk_orig">Описано власний внесок/оригінальність</label></div>
+            <div class="switch"><input id="privacyOk" type="checkbox"/> <label for="privacyOk" data-i18n="chk_priv">Дотримано приватності (без конфіденційних даних)</label></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="actions">
+          <button class="primary" id="genBtn" data-i18n="btn_gen">Згенерувати</button>
+          <button id="copyBtn" data-i18n="btn_copy">Скопіювати Markdown</button>
+          <button class="ghost" id="downloadBtn" data-i18n="btn_dl">Завантажити .md</button>
+          <button class="ghost" id="resetBtn" data-i18n="btn_reset">Скинути поля</button>
+        </div>
+
+        <div class="footer">
+          <span data-i18n="official_resources">Офіційні ресурси (власні розробки викладачки):</span>
+          <div class="kudo">
+            • <span data-i18n="repo_text">Навчальний репозиторій із промпт-інжинірингу:</span> <a id="repoLink" href="#" target="_blank" rel="noopener">додати посилання</a><br/>
+            • <span data-i18n="assistant_text">Персональний асистент викладача:</span> <a id="asstLink" href="#" target="_blank" rel="noopener">додати посилання</a><br/>
+            <span class="hint" data-i18n="resources_hint">*Не використовуються на контрольних. Дотримуйтесь приватності.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Права колонка -->
+    <div class="card sticky">
+      <div class="hd"><h2 data-i18n="preview_title">Попередній перегляд декларації (Markdown)</h2></div>
+      <div class="bd">
+        <div id="warn" class="alert warn" style="display:none;" data-i18n="warn_light">Для лайт-версії потрібно відмітити всі пункти чек-листа.</div>
+        <pre id="preview" class="preview" data-i18n="preview_ph">Натисніть «Згенерувати», щоб побачити декларацію…</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span data-i18n="copyright_html">
+      © 2025 Анастасія Іскандарова-Мала. Генератор створено відповідно до моєї авторської політики використання ШІ. Цитування з посиланням на авторку — вітається.
+    </span>
+  </div>
+</div>
+
+<script>
+  // --- ДОДАЙТЕ СВОЇ ПОСИЛАННЯ ---
+  const REPO_LINK = "";       // напр.: "https://github.com/steminist-ua/ai-academic-toolkit"
+  const ASSISTANT_LINK = "";  // напр.: "https://steminist-ua.github.io/ai-assistant/"
+
+  // --- ЛОКАЛІЗАЦІЯ ---
+  const I18N = {
+    uk: {
+      page_title: "RAID-G — Генератор декларації про відповідальне використання ШІ студентами у вищій освіті | політика А. Іскандарової-Малої",
+      h1_title: "RAID-G — Генератор «Декларації про використання ШІ»",
+      subtitle_html:
+        "Відповідає авторській політиці відповідального використання ШІ (<strong>Анастасія Іскандарова-Мала</strong>, кафедра ПЗС, ДДТУ; ГО СТЕМІНІСТ; <a href='mailto:mala@steminist.com.ua'>mala@steminist.com.ua</a>).<br/>Цитування: Іскандарова-Мала, А. (2025). <em>RAID-G (Responsible AI Declaration Generator): практичний інструмент для документування відповідального студентського використання генеративного ШІ у вищій освіті</em>.<br/>Сторінка зберігає введені дані локально у вашому браузері.",
+      form_title: "Заповнення декларації",
+      mode_label: "Режим декларації",
+      mode_yellow: "Жовта зона — повна (6 секцій)",
+      mode_green: "Зелена зона — лайт (чек-лист)",
+      tools_label: "Інструменти/моделі (оберіть або впишіть своє)",
+      tools_ph: "GPT-4o (ChatGPT), GitHub Copilot (VS Code)",
+      tools_hint: "Можна комбінувати через кому.",
+      goal_label: "Мета використання",
+      goal_ph: "Що саме робили за допомогою ШІ (рефакторинг, пояснення, boilerplate, візуалізації…)",
+      prompts_label: "Ключові промпти / ланцюжок",
+      prompts_ph: "Стисло перелічіть ключові запити або опишіть ланцюжок промптів",
+      repo_label: "Посилання на prompts.md / артефакти",
+      repo_ph: "/docs/prompts.md або URL репозиторію",
+      repo_hint: "Напр.: /docs/prompts.md або https://…",
+      commit_label: "Commit hash ",
+      opt: "(необов’язково)",
+      adr_label: "ADR / журнал рішень",
+      contrib_label: "Власний внесок (суттєва переробка)",
+      contrib_ph: "Що саме змінено/перепроєктовано, чому, як інтегровано",
+      verify_label: "Перевірка якості/достовірності",
+      verify_ph: "Тести, бенчмарки, code review, перевірка джерел, відтворюваність",
+      cov_before: "Coverage «до», %",
+      cov_after: "Coverage «після», %",
+      covb_ph: "напр., 65",
+      cova_ph: "напр., 87",
+      delta: "Δ: — п.п.",
+      refl_label: "Критична рефлексія",
+      refl_ph: "Обмеження моделі, упередженість, помилки, як мінімізовано",
+      green_badge: "зелена зона",
+      green_note: "Заповніть чек-лист (усі пункти обов’язкові) + короткі описи.",
+      usedfor_label: "Для чого використовував(ла) ШІ",
+      usedfor_ph: "пояснення / ідеї / структура / форматування…",
+      light_contrib_label: "Мій внесок (коротко)",
+      light_contrib_ph: "що зроблено вручну, що змінила(в)",
+      chk_task: "Я уточнив(ла) завдання та обмеження (контекст)",
+      chk_valid: "Результат вручну перевірено/доопрацьовано",
+      chk_orig: "Описано власний внесок/оригінальність",
+      chk_priv: "Дотримано приватності (без конфіденційних даних)",
+      btn_gen: "Згенерувати",
+      btn_copy: "Скопіювати Markdown",
+      btn_dl: "Завантажити .md",
+      btn_reset: "Скинути поля",
+      official_resources: "Офіційні ресурси (власні розробки викладачки):",
+      repo_text: "Навчальний репозиторій із промпт-інжинірингу:",
+      assistant_text: "Персональний асистент викладача:",
+      resources_hint: "*Не використовуються на контрольних. Дотримуйтесь приватності.",
+      preview_title: "Попередній перегляд декларації (Markdown)",
+      warn_light: "Для лайт-версії потрібно відмітити всі пункти чек-листа.",
+      preview_ph: "Натисніть «Згенерувати», щоб побачити декларацію…",
+      copyright_html:
+        "© {year} Анастасія Іскандарова-Мала (<a href='mailto:mala@steminist.com.ua'>mala@steminist.com.ua</a>). Генератор створено відповідно до моєї авторської політики використання ШІ. Цитування з посиланням на авторку — вітається.",
+      // Markdown шаблони
+      md_light_header: "**Лайт-декларація (зелена зона)**",
+      md_tools: "- **Інструменти:** ",
+      md_usedfor: "- **Для чого використовував(ла):** ",
+      md_mycontrib: "- **Мій внесок:** ",
+      md_verify: "- **Перевірка:** ",
+      md_privacy: "- **Конфіденційність/етика:** підтверджую дотримання політики (без завантаження конфіденційних даних).",
+      md_official: "_Офіційні ресурси викладачки: репозиторій — {repo}; персональний асистент — {asst}._",
+      md_full_header: "**Декларація про використання ШІ**",
+      md_goal: "- **МЕТА:** ",
+      md_prompts: "- **ПРОМПТИ:** див. ",
+      md_commit: " (commit: ",
+      md_keys: "). Ключові: ",
+      md_adr: "- **ADR/Артефакти:** ",
+      md_contrib: "- **ВЛАСНИЙ ВНЕСОК:** ",
+      md_verify2: "- **ВЕРИФІКАЦІЯ:** ",
+      md_refl: "- **РЕФЛЕКСІЯ:** ",
+      md_cov: " (coverage {b}% → {a}%, Δ {d} п.п.)",
+      md_cite:
+        "_Iskandarova-Mala, A. (2025). RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education. https://steminist-ua.github.io/ai-academic-toolkit/raid-g_",
+      // Чіпси
+      chip_goal: [
+        "Рефакторинг модулів (SRP, DRY), оптимізація алгоритмів",
+        "Генерація boilerplate (заготовок) / scaffolding проекту",
+        "Пояснення фрагментів коду та формування плану тестування",
+        "Створення чорнових UML/діаграм послідовностей",
+        "Автогенерація візуалізацій/таблиць для звіту",
+        "Побудова SQL-запитів і первинних індексів"
+      ],
+      chip_prompts: [
+        "Аналіз: перелічити проблеми та альтернативи; Рефакторинг: 2–3 варіанти; Валідація: тест-план.",
+        "Few-shot: приклади вхід/вихід; обмеження; критерії якості.",
+        "Mermaid UML → пояснення зв’язків → перевірка навантаження/безпеки."
+      ],
+      chip_adr: [
+        "ADR-01: вибір архітектурного підходу (trade-offs, ризики)",
+        "ADR-02: стратегія зберігання даних (SQL/NoSQL, індекси)",
+        "ADR-03: обробка помилок і логування"
+      ],
+      chip_contrib: [
+        "Перепроєктовано структуру; розділено відповідальності; оновлено API.",
+        "Доопрацьовано тести: додано edge-cases та property-based.",
+        "Оптимізовано SQL; знижено час запиту на 35%."
+      ],
+      chip_verify: [
+        "Unit/Integration/Property-based тести; SAST без критичних помилок.",
+        "Бенчмарки до/після; EXPLAIN ANALYZE; перевірка джерел.",
+        "Code review (peer-review); відтворюваність."
+      ],
+      chip_reflection: [
+        "Галюцинації → додано перевірку джерел.",
+        "Bias у прикладах → збалансовано дані/переформульовано промпти.",
+        "Ліміт контексту → розбивка задач (prompt chaining)."
+      ],
+      chip_usedFor: [
+        "Структурування/конспект ідей",
+        "Редагування власного тексту",
+        "Початкові приклади коду (чернетки)"
+      ],
+      alert_copy_ok: "Скопійовано у буфер обміну.",
+      alert_copy_fail: "Не вдалося скопіювати. Виділіть і скопіюйте вручну.",
+      alert_reset: "Скинути всі поля?"
+    },
+    en: {
+      page_title: "RAID-G — Generator of Responsible AI Declarations for Students in Higher Education | A. Iskandarova-Mala policy",
+      h1_title: "RAID-G — Generator of AI Use Declarations",
+      subtitle_html:
+        "Aligned with the author's policy on responsible AI use (<strong>Anastasiia Iskandarova-Mala</strong>, Department of Software Systems, DSTU; NGO STEMINIST; <a href='mailto:mala@steminist.com.ua'>mala@steminist.com.ua</a>).<br/>Citation: Iskandarova-Mala, A. (2025). <em>RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education</em>.<br/>The page stores your inputs locally in the browser.",
+      form_title: "Fill the Declaration",
+      mode_label: "Declaration mode",
+      mode_yellow: "Yellow zone — full (6 sections)",
+      mode_green: "Green zone — light (checklist)",
+      tools_label: "Tools/Models (pick or type your own)",
+      tools_ph: "GPT-4o (ChatGPT), GitHub Copilot (VS Code)",
+      tools_hint: "You can combine by comma.",
+      goal_label: "Purpose of use",
+      goal_ph: "What you did with AI (refactoring, explanations, boilerplate, visualizations…)",
+      prompts_label: "Key prompts / chaining",
+      prompts_ph: "Briefly list prompts or describe the prompt chain",
+      repo_label: "Link to prompts.md / artifacts",
+      repo_ph: "/docs/prompts.md or repository URL",
+      repo_hint: "E.g.: /docs/prompts.md or https://…",
+      commit_label: "Commit hash ",
+      opt: "(optional)",
+      adr_label: "ADR / decision log",
+      contrib_label: "Own contribution (substantial modification)",
+      contrib_ph: "What was changed/re-designed, why, and how integrated",
+      verify_label: "Quality/validity verification",
+      verify_ph: "Tests, benchmarks, code review, source checking, reproducibility",
+      cov_before: "Coverage “before”, %",
+      cov_after: "Coverage “after”, %",
+      covb_ph: "e.g., 65",
+      cova_ph: "e.g., 87",
+      delta: "Δ: — p.p.",
+      refl_label: "Critical reflection",
+      refl_ph: "Model limits, bias, errors, and mitigation",
+      green_badge: "green zone",
+      green_note: "Complete the checklist (all items required) + short descriptions.",
+      usedfor_label: "What AI was used for",
+      usedfor_ph: "explanations / ideas / structuring / formatting…",
+      light_contrib_label: "My contribution (short)",
+      light_contrib_ph: "what was done manually / changed",
+      chk_task: "I clarified the task and constraints (context)",
+      chk_valid: "The result was manually verified/edited",
+      chk_orig: "Own contribution/originality described",
+      chk_priv: "Privacy was respected (no confidential data)",
+      btn_gen: "Generate",
+      btn_copy: "Copy Markdown",
+      btn_dl: "Download .md",
+      btn_reset: "Reset",
+      official_resources: "Official resources (author’s materials):",
+      repo_text: "Prompt-engineering training repository:",
+      assistant_text: "Lecturer’s personal assistant:",
+      resources_hint: "*Not for use in exams. Respect privacy.",
+      preview_title: "Declaration Preview (Markdown)",
+      warn_light: "All checklist items must be checked for the light version.",
+      preview_ph: "Click “Generate” to preview the declaration…",
+      copyright_html:
+        "© {year} Anastasiia Iskandarova-Mala (<a href='mailto:mala@steminist.com.ua'>mala@steminist.com.ua</a>). The generator follows my author policy on AI use. Citation with attribution is welcome.",
+      // Markdown templates
+      md_light_header: "**Light Declaration (green zone)**",
+      md_tools: "- **Tools:** ",
+      md_usedfor: "- **Used for:** ",
+      md_mycontrib: "- **My contribution:** ",
+      md_verify: "- **Verification:** ",
+      md_privacy: "- **Privacy/Ethics:** I confirm compliance with the policy (no confidential data uploaded).",
+      md_official: "_Official resources: repository — {repo}; personal assistant — {asst}._",
+      md_full_header: "**Declaration of AI Use**",
+      md_goal: "- **PURPOSE:** ",
+      md_prompts: "- **PROMPTS:** see ",
+      md_commit: " (commit: ",
+      md_keys: "). Key: ",
+      md_adr: "- **ADR/Artifacts:** ",
+      md_contrib: "- **OWN CONTRIBUTION:** ",
+      md_verify2: "- **VERIFICATION:** ",
+      md_refl: "- **REFLECTION:** ",
+      md_cov: " (coverage {b}% → {a}%, Δ {d} p.p.)",
+      md_cite:
+        "_Iskandarova-Mala, A. (2025). RAID-G (Responsible AI Declaration Generator): A practical instrument for documenting responsible student use of generative AI in higher education. https://steminist-ua.github.io/ai-academic-toolkit/raid-g_",
+      // Chips
+      chip_goal: [
+        "Refactor modules (SRP, DRY), optimize algorithms",
+        "Generate boilerplate / project scaffolding",
+        "Explain code fragments and draft test plan",
+        "Draft UML/sequence diagrams",
+        "Auto-generate visuals/tables for report",
+        "Compose SQL queries and initial indexes"
+      ],
+      chip_prompts: [
+        "Analysis: list issues & alternatives; Refactoring: 2–3 options; Validation: test plan.",
+        "Few-shot: I/O examples; constraints; quality criteria.",
+        "Mermaid UML → explain relationships → load/security checks."
+      ],
+      chip_adr: [
+        "ADR-01: architecture choice (trade-offs, risks)",
+        "ADR-02: data storage strategy (SQL/NoSQL, indexes)",
+        "ADR-03: error handling & logging"
+      ],
+      chip_contrib: [
+        "Re-designed structure; split responsibilities; updated API.",
+        "Enhanced tests: added edge cases & property-based.",
+        "Optimized SQL; reduced query time by 35%."
+      ],
+      chip_verify: [
+        "Unit/Integration/Property-based tests; SAST clear of criticals.",
+        "Benchmarks before/after; EXPLAIN ANALYZE; source checking.",
+        "Code review (peer-review); reproducibility."
+      ],
+      chip_reflection: [
+        "Hallucinations → added source verification.",
+        "Bias detected → rebalanced data/rephrased prompts.",
+        "Context limits → task split (prompt chaining)."
+      ],
+      chip_usedFor: [
+        "Structuring/outlining ideas",
+        "Editing own text",
+        "Initial code snippets (drafts)"
+      ],
+      alert_copy_ok: "Copied to clipboard.",
+      alert_copy_fail: "Copy failed. Please select and copy manually.",
+      alert_reset: "Reset all fields?"
+    }
+  };
+
+  // Зразки для чіпсів (ключ = id поля або data-target) — підтягуємо з I18N
+  function getChips(lang){
+    return {
+      goal: I18N[lang].chip_goal,
+      prompts: I18N[lang].chip_prompts,
+      adr: I18N[lang].chip_adr,
+      contribution: I18N[lang].chip_contrib,
+      verification: I18N[lang].chip_verify,
+      reflection: I18N[lang].chip_reflection,
+      usedFor: I18N[lang].chip_usedFor
+    };
+  }
+
+  // --- DOM ---
+  const langBtns = document.querySelectorAll('.langbtn');
+
+  const mode  = document.getElementById('mode');
+  const tools = document.getElementById('tools');
+  const goal  = document.getElementById('goal');
+  const prompts = document.getElementById('prompts');
+  const repoRef = document.getElementById('repoRef');
+  const commit  = document.getElementById('commit');
+  const adr     = document.getElementById('adr');
+  const contribution = document.getElementById('contribution');
+  const verification = document.getElementById('verification');
+  const covBefore = document.getElementById('covBefore');
+  const covAfter  = document.getElementById('covAfter');
+  const deltaEl   = document.getElementById('delta');
+  const reflection = document.getElementById('reflection');
+
+  const usedFor = document.getElementById('usedFor');
+  const lightContribution = document.getElementById('lightContribution');
+  const clarifiedTask = document.getElementById('clarifiedTask');
+  const manualValidation = document.getElementById('manualValidation');
+  const originalityNote = document.getElementById('originalityNote');
+  const privacyOk = document.getElementById('privacyOk');
+
+  const fullFields  = document.getElementById('full-fields');
+  const lightFields = document.getElementById('light-fields');
+  const preview     = document.getElementById('preview');
+  const warn        = document.getElementById('warn');
+
+  const genBtn      = document.getElementById('genBtn');
+  const copyBtn     = document.getElementById('copyBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const resetBtn    = document.getElementById('resetBtn');
+
+  const repoLinkEl  = document.getElementById('repoLink');
+  const asstLinkEl  = document.getElementById('asstLink');
+
+
+  // --- RESOURCES ---
+  function setResourceLinks(){
+    if (REPO_LINK){ repoLinkEl.href = REPO_LINK; repoLinkEl.textContent = REPO_LINK; }
+    if (ASSISTANT_LINK){ asstLinkEl.href = ASSISTANT_LINK; asstLinkEl.textContent = ASSISTANT_LINK; }
+  }
+
+  // --- LANG STATE ---
+  function getLang(){ return localStorage.getItem('decl.ai.lang') || document.documentElement.lang || 'en'; }
+  function setLang(l){ localStorage.setItem('decl.ai.lang', l); document.documentElement.lang = l; }
+
+  // --- I18N APPLY ---
+  function t(key){ const l = getLang(); return (I18N[l] && I18N[l][key]) || key; }
+
+  function applyI18n(){
+    // texts
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      let val = t(key);
+      // inject dynamic year placeholder if present
+      if (typeof val === 'string' && val.includes('{year}')) {
+        val = val.replace('{year}', new Date().getFullYear());
+      }
+      if (key.endsWith('_html')) el.innerHTML = val;
+      else el.textContent = val;
+    });
+    // placeholders
+    document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-ph');
+      el.setAttribute('placeholder', t(key));
+    });
+    // <title>
+    document.title = t('page_title');
+    // language buttons active
+    langBtns.forEach(b=>{
+      b.classList.toggle('active', b.dataset.lang === getLang());
+    });
+    // chips
+    mountChips(); // remount with new language
+    // re-render preview since templates change
+    preview.textContent = renderMarkdown();
+  }
+
+  // --- CHIPS ---
+  function mountChips(){
+    const lang = getLang();
+    const CHIP_TEMPLATES = getChips(lang);
+    document.querySelectorAll('.chips').forEach(box=>{
+      const targetId = box.dataset.target;
+      const opts = CHIP_TEMPLATES[targetId] || [];
+      box.innerHTML = '';
+      opts.forEach(txt=>{
+        const b = document.createElement('span');
+        b.className = 'chip';
+        b.textContent = txt;
+        b.addEventListener('click', ()=>{
+          const el = document.getElementById(targetId);
+          if (!el) return;
+          if (el.tagName === 'INPUT'){
+            el.value = el.value ? (el.value + '; ' + txt) : txt;
+          } else {
+            const glue = el.value && !el.value.trim().endsWith('\n') ? '\n' : '';
+            el.value = el.value + glue + txt;
+          }
+          saveAll(); preview.textContent = renderMarkdown();
+        });
+        box.appendChild(b);
+      });
+    });
+  }
+
+  // --- MODE / DELTA ---
+  function applyMode(){
+    const isGreen = mode.value === 'green';
+    fullFields.style.display  = isGreen ? 'none' : '';
+    lightFields.style.display = isGreen ? '' : 'none';
+    warn.style.display = 'none';
+  }
+
+  function renderDelta(){
+    const before = parseFloat(covBefore.value);
+    const after  = parseFloat(covAfter.value);
+    const l = getLang();
+    if (isFinite(before) && isFinite(after)){
+      const d = +(after - before).toFixed(1);
+      const suffix = (l==='uk') ? ' п.п.' : ' p.p.';
+      deltaEl.textContent = `Δ: ${d>0?'+':''}${d}${suffix}`;
+      deltaEl.classList.toggle('positive', d>0);
+      deltaEl.classList.toggle('negative', d<0);
+    } else {
+      deltaEl.textContent = t('delta');
+      deltaEl.classList.remove('positive','negative');
+    }
+  }
+
+  [covBefore, covAfter].forEach(el=>el.addEventListener('input', ()=>{ renderDelta(); saveAll(); preview.textContent = renderMarkdown(); }));
+  mode.addEventListener('change', ()=>{ applyMode(); saveAll(); preview.textContent = renderMarkdown(); });
+
+  // --- PERSIST ---
+  function saveAll(){
+    const data = {
+      mode: mode.value, tools: tools.value,
+      goal: goal.value, prompts: prompts.value, repoRef: repoRef.value, commit: commit.value, adr: adr.value,
+      contribution: contribution.value, verification: verification.value, covBefore: covBefore.value, covAfter: covAfter.value, reflection: reflection.value,
+      usedFor: usedFor.value, lightContribution: lightContribution.value,
+      clarifiedTask: clarifiedTask.checked, manualValidation: manualValidation.checked, originalityNote: originalityNote.checked, privacyOk: privacyOk.checked
+    };
+    localStorage.setItem('decl.ai.v3', JSON.stringify(data));
+  }
+
+  function loadAll(){
+    try{
+      const raw = localStorage.getItem('decl.ai.v3');
+      if (!raw) return false;
+      const d = JSON.parse(raw);
+      mode.value = d.mode || 'yellow';
+      tools.value = d.tools || '';
+      goal.value = d.goal || '';
+      prompts.value = d.prompts || '';
+      repoRef.value = d.repoRef || '';
+      commit.value = d.commit || '';
+      adr.value = d.adr || '';
+      contribution.value = d.contribution || '';
+      verification.value = d.verification || '';
+      covBefore.value = d.covBefore || '';
+      covAfter.value = d.covAfter || '';
+      reflection.value = d.reflection || '';
+      usedFor.value = d.usedFor || '';
+      lightContribution.value = d.lightContribution || '';
+      clarifiedTask.checked = !!d.clarifiedTask;
+      manualValidation.checked = !!d.manualValidation;
+      originalityNote.checked = !!d.originalityNote;
+      privacyOk.checked = !!d.privacyOk;
+      return true;
+    }catch{ return false; }
+  }
+
+  function setDefaults(){
+    mode.value = 'yellow';
+    tools.value = 'GPT-4o (ChatGPT), GitHub Copilot (VS Code)';
+    goal.value = '';
+    prompts.value = '';
+    repoRef.value = '/docs/prompts.md';
+    commit.value = 'a1b2c3d';
+    adr.value = 'ADR-01';
+    contribution.value = '';
+    verification.value = '';
+    covBefore.value = '';
+    covAfter.value = '';
+    reflection.value = '';
+    usedFor.value = (getLang()==='uk' ? 'пояснення / ідеї / структура' : 'explanations / ideas / structure');
+    lightContribution.value = '';
+    clarifiedTask.checked = false;
+    manualValidation.checked = false;
+    originalityNote.checked = false;
+    privacyOk.checked = false;
+  }
+
+  // --- MARKDOWN RENDER ---
+  function shorten(str){ if(!str) return ''; return str.length>220 ? str.slice(0,220)+'…' : str; }
+
+  function renderMarkdown(){
+    const l = getLang();
+    const tz = mode.value;
+
+    const covNote = (()=> {
+      const b = parseFloat(covBefore.value), a = parseFloat(covAfter.value);
+      if (isFinite(b) && isFinite(a)){
+        const d = +(a-b).toFixed(1);
+        const tpl = t('md_cov'); // has {b},{a},{d} and localized suffix
+        return tpl.replace('{b}', b).replace('{a}', a).replace('{d}', (d>0?'+':'')+d);
+      }
+      return '';
+    })();
+
+    if (tz === 'green'){
+      const ok = clarifiedTask.checked && manualValidation.checked && originalityNote.checked && privacyOk.checked;
+      warn.style.display = ok ? 'none' : '';
+      const md = [
+        t('md_light_header'),
+        '',
+        `${t('md_tools')}${tools.value || '—'}`,
+        `${t('md_usedfor')}${usedFor.value || '—'}`,
+        `${t('md_mycontrib')}${lightContribution.value || (l==='uk' ? '(коротко опишіть, що зроблено вручну)' : '(briefly describe what was done manually)')}`,
+        `${t('md_verify')}${shorten(verification.value) || (l==='uk' ? '(валідація/тести/звірка джерел)' : '(validation/tests/source checking)')}${covNote}`,
+        t('md_privacy'),
+        '',
+        t('md_official').replace('{repo}', REPO_LINK || (l==='uk' ? '<додати посилання>' : '<add link>'))
+                        .replace('{asst}', ASSISTANT_LINK || (l==='uk' ? '<додати посилання>' : '<add link>'))
+      ].join('\n');
+      return md;
+    }
+
+    const md = [
+      t('md_full_header'),
+      '',
+      `${t('md_tools')}${tools.value || '—'}`,
+      `${t('md_goal')}${goal.value || '—'}`,
+      `${t('md_prompts')}${repoRef.value || '/docs/prompts.md'}${t('md_commit')}${commit.value || '—'}${t('md_keys')}${prompts.value || '—'}`,
+      `${t('md_adr')}${adr.value || '—'}`,
+      `${t('md_contrib')}${contribution.value || '—'}`,
+      `${t('md_verify2')}${verification.value || '—'}${covNote}`,
+      `${t('md_refl')}${reflection.value || '—'}`,
+      '',
+      t('md_cite')
+    ].join('\n');
+    return md;
+  }
+
+  // --- EVENTS ---
+  document.getElementById('genBtn').addEventListener('click', ()=>{
+    preview.textContent = renderMarkdown();
+    saveAll();
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', async ()=>{
+    const md = preview.textContent || renderMarkdown();
+    try{ await navigator.clipboard.writeText(md); alert(t('alert_copy_ok')); }
+    catch{ alert(t('alert_copy_fail')); }
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', ()=>{
+    const md = preview.textContent || renderMarkdown();
+    const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const dt = new Date().toISOString().slice(0,10);
+    const file = mode.value === 'green' ? `declaration_light_${dt}.md` : `declaration_full_${dt}.md`;
+    a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    if (!confirm(t('alert_reset'))) return;
+    localStorage.removeItem('decl.ai.v3');
+    setDefaults();
+    applyMode();
+    renderDelta();
+    preview.textContent = t('preview_ph');
+    warn.style.display = 'none';
+  });
+
+  // --- LANG SWITCH ---
+  langBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const l = btn.dataset.lang;
+      setLang(l);
+      applyI18n();
+    });
+  });
+
+  // --- INIT ---
+  (function init(){
+    setResourceLinks();
+    // initial lang
+    setLang(getLang());
+    // load data
+    const loaded = loadAll();
+    if (!loaded) setDefaults();
+    applyMode();
+    renderDelta();
+    applyI18n(); // mounts chips + labels + preview
+  })();
+</script>
+</body>
+</html>
