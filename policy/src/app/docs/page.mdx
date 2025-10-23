@@ -1,0 +1,10 @@
+import { redirect } from 'next/navigation'
+
+export const metadata = {
+  title: 'Вступ'
+}
+
+export default function Page() {
+  redirect('/intro')
+  return null
+}

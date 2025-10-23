@@ -1,0 +1,66 @@
+# OS-generated files
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# Build outputs
+.next/
+dist/
+out/
+build/
+.cache/
+.turbo/
+.vercel/
+*.swc
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing and coverage artifacts
+coverage/
+*.lcov
+
+# Temporary files
+*.tmp
+*.temp
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+
+# Nextra app (policy/)
+policy/node_modules/
+policy/.next/
+policy/.turbo/
+policy/.vercel/
+policy/.cache/
+policy/dist/
+policy/out/
+policy/build/
+policy/.swc/
+policy/logs/
