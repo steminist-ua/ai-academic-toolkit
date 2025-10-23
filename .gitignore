@@ -53,14 +53,4 @@ coverage/
 *.synctex.gz
 *.toc
 
-# Nextra app (policy/)
-policy/node_modules/
-policy/.next/
-policy/.turbo/
-policy/.vercel/
-policy/.cache/
-policy/dist/
-policy/out/
-policy/build/
-policy/.swc/
-policy/logs/
+
