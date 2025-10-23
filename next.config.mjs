@@ -14,6 +14,9 @@ export default withNextra({
   trailingSlash: true,
   assetPrefix: isProd ? `${repoBase}/` : undefined,
   basePath: isProd ? repoBase : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? repoBase : ''
+  },
   images: {
     unoptimized: true
   }

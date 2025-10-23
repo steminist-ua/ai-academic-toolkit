@@ -1,6 +1,10 @@
 'use client'
 
+import Link from 'next/link'
+import { withBasePath } from '../utils/basePath'
+
 export default function IndexPage() {
+
   return (
     <>
       <style jsx>{`
@@ -343,15 +347,15 @@ export default function IndexPage() {
           </p>
 
           {/* Author */}
-          <a className="author" href="/author">
+          <Link className="author" href="/author">
             <div className="avatar">
-              <img src="/autor.png" alt="Анастасія Іскандарова-Мала" />
+              <img src={withBasePath('/autor.png')} alt="Анастасія Іскандарова-Мала" />
             </div>
             <div className="author-info">
               <div className="author-name">Анастасія Іскандарова-Мала</div>
               <div className="author-role">Кафедра ПЗС, ДДТУ</div>
             </div>
-          </a>
+          </Link>
 
           {/* Note */}
           <div className="note">
@@ -362,15 +366,15 @@ export default function IndexPage() {
 
           {/* CTA */}
           <div className="cta">
-            <a href="/intro" className="btn btn-primary">
+            <Link href="/intro" className="btn btn-primary">
               📖 Почати читати
-            </a>
-            <a href="/appendices" className="btn btn-secondary">
+            </Link>
+            <Link href="/appendices" className="btn btn-secondary">
               📦 Додатки та приклади
-            </a>
-            <a href="/presentation" className="btn btn-secondary">
+            </Link>
+            <Link href="/presentation" className="btn btn-secondary">
               🖼️ Презентація
-            </a>
+            </Link>
           </div>
 
           {/* Cards */}

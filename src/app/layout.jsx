@@ -6,16 +6,19 @@ import 'katex/dist/katex.min.css'
 import 'nextra-theme-docs/style.css'
 import SidebarProfile from '../components/SidebarProfile'
 import '../styles/sidebar-footer.css'
+import { withBasePath } from '../utils/basePath'
+
+const iconPath = withBasePath('/icon_policy.png')
 
 export const metadata = {
   title: 'Політика академічного використання ШІ',
   description: 'Документація політики використання ШІ в навчальному процесі',
   icons: {
     icon: [
-      { url: '/icon_policy.png', type: 'image/png', rel: 'icon' },
-      { url: '/icon_policy.png', rel: 'shortcut icon' }
+      { url: iconPath, type: 'image/png', rel: 'icon' },
+      { url: iconPath, rel: 'shortcut icon' }
     ],
-    apple: '/icon_policy.png'
+    apple: iconPath
   }
 }
 

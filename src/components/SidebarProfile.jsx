@@ -4,6 +4,7 @@
 import { useMemo } from 'react'
 import { ThemeSwitch } from 'nextra-theme-docs'
 import { sidebarProfile } from '../config/sidebar-profile'
+import { withBasePath } from '../utils/basePath'
 
 const normalizeAffiliations = (affiliations = []) =>
   affiliations.filter((item) => item && (item.logo?.src || item.name))
@@ -26,7 +27,7 @@ const SidebarProfile = () => {
         <div className="sidebar-profile-card__header">
           {photo?.src && (
             <img
-              src={photo.src}
+              src={withBasePath(photo.src)}
               alt={photo.alt || name || 'Автор політики'}
               className="sidebar-profile-card__photo"
               loading="lazy"
@@ -49,7 +50,7 @@ const SidebarProfile = () => {
       {fullWidthAffiliation ? (
         <div className="sidebar-profile-card__affiliations sidebar-profile-card__affiliations--wide">
           <img
-            src={fullWidthAffiliation.logo.src}
+            src={withBasePath(fullWidthAffiliation.logo.src)}
             alt={
               fullWidthAffiliation.logo.alt ||
               fullWidthAffiliation.name ||
@@ -69,7 +70,7 @@ const SidebarProfile = () => {
             const { url, name: orgName, logo } = affiliation
             const content = logo?.src ? (
               <img
-                src={logo.src}
+                src={withBasePath(logo.src)}
                 alt={logo.alt || orgName || 'Логотип партнера'}
                 className="sidebar-profile-card__logo"
                 loading="lazy"
