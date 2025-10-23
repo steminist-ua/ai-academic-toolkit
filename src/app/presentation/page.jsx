@@ -77,7 +77,7 @@ const slides = [
     gradient:
       'radial-gradient(circle at 22% 22%, rgba(236, 72, 153, 0.38), transparent 58%), radial-gradient(circle at 78% 75%, rgba(96, 165, 250, 0.42), transparent 60%), linear-gradient(135deg, #c7d2fe 0%, #f8fafc 100%)',
     link: {
-      href: '/appendices/references',
+      href: withBasePath('/appendices/references'),
       label: 'Використані дослідження'
     }
   }
