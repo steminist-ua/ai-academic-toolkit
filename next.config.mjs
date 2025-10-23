@@ -12,7 +12,7 @@ export default withNextra({
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
-  assetPrefix: isProd ? repoBase : undefined,
+  assetPrefix: isProd ? `${repoBase}/` : undefined,
   basePath: isProd ? repoBase : undefined,
   images: {
     unoptimized: true
