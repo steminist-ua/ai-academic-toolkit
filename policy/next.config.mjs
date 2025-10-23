@@ -6,5 +6,9 @@ const withNextra = nextra({
 }) // <-- без theme/themeConfig у v4
 
 export default withNextra({
-  reactStrictMode: true
+  reactStrictMode: true,
+  output: 'export',
+  images: {
+    unoptimized: true
+  }
 })

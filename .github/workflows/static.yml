@@ -46,7 +46,7 @@ jobs:
         working-directory: policy
 
       - name: Export static site
-        run: npx next export --output out
+        run: npx next export
         working-directory: policy
 
       - name: Setup Pages
