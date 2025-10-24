@@ -1,5 +1,7 @@
 'use client'
 
+import { withBasePath } from '../../utils/basePath'
+
 const slides = [
   {
     eyebrow: '01',
