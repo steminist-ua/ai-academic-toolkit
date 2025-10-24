@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: >-
+  If you use the AI Academic Toolkit in research or teaching materials, please
+  cite it as described below.
+title: AI Academic Toolkit
+type: software
+abstract: >-
+  A collection of policy guidelines, tools, and teaching aids created by
+  Anastasiia Iskandarova-Mala to promote responsible, transparent integration of
+  generative AI in higher education.
+authors:
+  - family-names: Iskandarova-Mala
+    given-names: Anastasiia
+    affiliation: STEMINIST UA
+    orcid: https://orcid.org/0000-0002-9092-6442
+repository-code: https://github.com/steminist-ua/ai-academic-toolkit
+license: MIT
+version: 1.0.0
+date-released: 2025-01-25
+doi: 10.5281/zenodo.17347084
+keywords:
+  - generative AI
+  - academic policy
+  - higher education
+  - responsible AI
+  - RAID-G
